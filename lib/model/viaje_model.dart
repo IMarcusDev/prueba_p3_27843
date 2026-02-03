@@ -1,24 +1,28 @@
 class ViajeModel {
   int numeroAlumnos = 0;
-  int costo = 0;
+  int costoIndividual = 0;
+  int costoTotal = 0;
 
   ViajeModel(this.numeroAlumnos);
 
   int getCostoIndividual() {
-    return costo;
+    return costoIndividual;
   }
 
   int calcularCosto() {
-    costo = 4000;
-    if (numeroAlumnos > 99) {
-      costo = 65;
+    if (numeroAlumnos >= 100) {
+      costoIndividual = 65;
+      costoTotal = 65 * numeroAlumnos;
+    } else if (numeroAlumnos >= 50) {
+      costoIndividual = 70;
+      costoTotal = 70 * numeroAlumnos;
+    } else if (numeroAlumnos >= 30) {
+      costoIndividual = 95;
+      costoTotal = 95 * numeroAlumnos;
+    } else {
+      costoTotal = 4000;
+      costoIndividual = 4000 ~/ numeroAlumnos;
     }
-    if (numeroAlumnos > 49) {
-      costo = 70;
-    }
-    if (numeroAlumnos > 29) {
-      costo = 95;
-    }
-    return costo * numeroAlumnos;
+    return costoTotal;
   }
 }

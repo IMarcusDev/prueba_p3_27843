@@ -1,9 +1,26 @@
-bool isPalindrome(String word) {
-  final s = word.toLowerCase();
+import 'package:prueba_app/model/palidromo_model.dart';
 
-  for (int i = 0; i < s.length; i++) {
-    if (s[i] != s[s.length - i]) return false;
+class PalindromoController {
+  String verificarPalindromo(String palabra) {
+    String mensaje = "";
+
+    if (palabra.isEmpty) {
+      return "El campo está vacío, por favor ingrese una palabra";
+    }
+
+    if (palabra.length > 100) {
+      return "La palabra es demasiado larga, intente con una más corta";
+    }
+
+    final model = PalindromoModel();
+    final esPalindromo = model.isPalindrome(palabra);
+
+    if (esPalindromo) {
+      mensaje = "La palabra '$palabra' SÍ es un palíndromo";
+    } else {
+      mensaje = "La palabra '$palabra' NO es un palíndromo";
+    }
+
+    return mensaje;
   }
-
-  return true;
 }
